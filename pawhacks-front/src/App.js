@@ -6,6 +6,7 @@ import { ToastContainer } from 'react-toastify';
 
 import Loading from './components/loading';
 import StudentLogin from './components/student/student_login';
+import InstructorLogin from './components/instructor/instructor_login';
 
 import UserContext from './context/user.context';
 import WebSocketContext from './context/websocket.context';
@@ -15,6 +16,7 @@ export default function App() {
   const [userData, setUserData] = useState({
     user: undefined,
     instructorCode: undefined,
+    instructor: undefined
   });
   const [ws, setWS] = useState();
   const [ready, setReady] = useState(false);
@@ -25,9 +27,16 @@ export default function App() {
         // Set user data first
         const user = localStorage.getItem("user");
         const instructorCode = localStorage.getItem("instructorCode");
+        let instructor = localStorage.getItem("instructor");
+        if (instructor === "false"){
+          instructor = false;
+        } else if (instructor === "true") {
+          instructor = true;
+        }
         setUserData({
           user,
           instructorCode,
+          instructor
         });
 
         // Initialize WebSocket
@@ -63,6 +72,7 @@ export default function App() {
             />
             <Routes>
               <Route exact path="/student/login" Component={StudentLogin} />
+              <Route exact path="/instructor/login" Component={InstructorLogin} />
             </Routes>
           </WebSocketContext.Provider>
         </UserContext.Provider>

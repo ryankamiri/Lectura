@@ -20,9 +20,11 @@ export default function StudentLogin() {
             await Axios.post(process.env.REACT_APP_DOMAIN + '/api/student/points', loginUser);
             localStorage.setItem('user', user);
             localStorage.setItem('instructorCode', instructorCode);
+            localStorage.setItem('instructor', false);
             setUserData({
                 user,
                 instructorCode,
+                instructor: false
             });
             toast.success("Successfully Logged In!", {
                 position: "top-right",
@@ -51,8 +53,11 @@ export default function StudentLogin() {
     };
 
     useEffect(() => {
-        if(userData.user)
+        if(userData.user && userData.instructor) {
+            return navigate('/instructor');
+        } else if (userData.user && !userData.instructor) {
             return navigate('/student');
+        }
     }, [navigate, userData]);
 
     return (
