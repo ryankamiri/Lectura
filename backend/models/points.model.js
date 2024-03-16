@@ -2,18 +2,19 @@ const mongoose = require('mongoose');
 
 const Schema = mongoose.Schema;
 
-// points, user, intructorCode
+// points, user, instructorCode
 
 const pointsSchema = new Schema({
     points: {
         type: Number,
         required: true,
+        default: 0
     },
     user: {
         type: String,
         required: true,
     },
-    intructorCode: {
+    instructorCode: {
         type: String,
         required: true,
     }

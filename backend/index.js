@@ -14,13 +14,8 @@ const PORT = process.env.PORT || 5000;
 
 // Set up mongoose
 
-mongoose.connect(process.env.MONGO_URI, {useNewUrlParser: true, useUnifiedTopology: true, useCreateIndex: true}, (err) => {
-    if (err) {
-        console.log("Error on MongoDB connection: " + err.message);
-        throw err;
-    }
-    console.log("MongoDB connection established");
-});
+mongoose.connect(process.env.MONGO_URI);
+console.log("MongoDB connection established");
 
 // Set up routes
 app.use('/api/instructor', require('./routes/instructor'));

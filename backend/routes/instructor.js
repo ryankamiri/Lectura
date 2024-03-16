@@ -7,9 +7,9 @@ const WebSocket = require('../websocket');
 
 router.get('/question', async (req, res) => {
     try{
-        const {intructorCode} = req.body;
+        const {instructorCode} = req.body;
         
-        const questions = await Question.find({intructorCode});
+        const questions = await Question.find({instructorCode});
 
         return res.json({
             status: true,
@@ -21,11 +21,27 @@ router.get('/question', async (req, res) => {
     }
 });
 
-router.get('/question/points', async (req, res) => {
+router.get('/question/asked', async (req, res) => {
     try{
-        const {intructorCode} = req.body;
+        const {instructorCode} = req.body;
         
-        const points = await Points.find({intructorCode});
+        const askedQuestions = await AskedQuestion.find({instructorCode, active: true});
+
+        return res.json({
+            status: true,
+            askedQuestions
+        });
+    }
+    catch(err){
+        return res.status(500).json({status: false, msg: err.message});
+    }
+});
+
+router.get('/points', async (req, res) => {
+    try{
+        const {instructorCode} = req.body;
+        
+        const points = await Points.find({instructorCode});
         
         stringify(points, { header: true }, (err, output) => {
             if (err) {
@@ -44,13 +60,13 @@ router.get('/question/points', async (req, res) => {
 
 router.post('/question/create', async (req, res) => {
     try{
-        const {question, answers, correctIndex, intructorCode} = req.body;
+        const {question, answers, correctIndex, instructorCode} = req.body;
         
         const newQuestion = new Question({
             question,
             answers,
             correctIndex,
-            intructorCode,
+            instructorCode,
             active: false
         });
 
@@ -67,14 +83,14 @@ router.post('/question/create', async (req, res) => {
 
 router.post('/question/display', async (req, res) => {
     try{
-        const {question, intructorCode} = req.body;
-        const activeQuestions = await Question.find({active: true, intructorCode});
+        const {question, instructorCode} = req.body;
+        const activeQuestions = await Question.find({active: true, instructorCode});
         for(let i = 0; i < activeQuestions.length; i++){
             const activeQuestion = activeQuestions[i];
             activeQuestion.active = false;
             await activeQuestion.save();
         }
-        const displayQuestion = await Question.findOne({question, intructorCode});
+        const displayQuestion = await Question.findOne({question, instructorCode});
         if(!displayQuestion) {
             return res.status(400).json({status: false, msg: "Coulnd't find question."})
         }
@@ -82,7 +98,7 @@ router.post('/question/display', async (req, res) => {
         await displayQuestion.save();
         WebSocket.broadcast({
             messageType: "new_student_question",
-            content: {question, answers: displayQuestion.answers, intructorCode}
+            content: {question, answers: displayQuestion.answers, instructorCode}
         });
         return res.json({status: true});
     }
@@ -93,17 +109,17 @@ router.post('/question/display', async (req, res) => {
 
 router.post('/question/reward', async (req, res) => {
     try{
-        // question, user, intructorCode
-        const {question, intructorCode, reward} = req.body;
+        // question, user, instructorCode
+        const {question, instructorCode, reward} = req.body;
         
-        const rewardQuestion = await AskedQuestion.findOne({question, intructorCode});
+        const rewardQuestion = await AskedQuestion.findOne({question, instructorCode});
         if(!rewardQuestion) {
             return res.status(400).json({status: false, msg: "Coulnd't find question."})
         }
         rewardQuestion.active = false;
         if (reward > 0) {
-            // points, user, intructorCode
-            const points = await Points.findOne({user: rewardQuestion.user, intructorCode});
+            // points, user, instructorCode
+            const points = await Points.findOne({user: rewardQuestion.user, instructorCode});
             points.points += reward
     
             await points.save();

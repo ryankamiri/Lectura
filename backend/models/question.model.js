@@ -2,7 +2,7 @@ const mongoose = require('mongoose');
 
 const Schema = mongoose.Schema;
 
-// question, answers, correctIndex, intructorCode
+// question, answers, correctIndex, instructorCode, active
 
 const questionSchema = new Schema({
     question: {
@@ -18,7 +18,7 @@ const questionSchema = new Schema({
         required: true,
         default: 0,
     },
-    intructorCode: {
+    instructorCode: {
         type: String,
         required: true,
     },

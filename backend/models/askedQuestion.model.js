@@ -2,7 +2,7 @@ const mongoose = require('mongoose');
 
 const Schema = mongoose.Schema;
 
-// question, user, intructorCode
+// question, user, instructorCode, active
 
 const askedQuestionSchema = new Schema({
     question: {
@@ -13,7 +13,7 @@ const askedQuestionSchema = new Schema({
         type: String,
         required: true,
     },
-    intructorCode: {
+    instructorCode: {
         type: String,
         required: true,
     },
