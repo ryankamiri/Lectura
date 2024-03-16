@@ -20,9 +20,11 @@ export default function StudentLogin() {
             await Axios.post(process.env.REACT_APP_DOMAIN + '/api/student/points', loginUser);
             localStorage.setItem('user', user);
             localStorage.setItem('instructorCode', instructorCode);
+            localStorage.setItem('instructor', false);
             setUserData({
                 user,
                 instructorCode,
+                instructor: false
             });
             toast.success("Successfully Logged In!", {
                 position: "top-right",
@@ -51,17 +53,22 @@ export default function StudentLogin() {
     };
 
     useEffect(() => {
-        if(userData.user)
+        if(userData.user && userData.instructor) {
+            return navigate('/instructor');
+        } else if (userData.user && !userData.instructor) {
             return navigate('/student');
+        }
     }, [navigate, userData]);
 
     return (
     <>
-        <input id="user" type="text"onChange={e => setUser(e.target.value)}/>
-        <label htmlFor="user">Email</label>
-        <input id="instructorCode" type="text" onChange={e => setInstructorCode(e.target.value)}/>
-        <label htmlFor="instructorCode">Instructor Code</label>
-        <button onClick={login}>Join class</button>
+        <div className="container">
+            <input id="user" type="text" onChange={e => setUser(e.target.value)}/>
+            <label htmlFor="user">Email</label>
+            <input id="instructorCode" type="text" onChange={e => setInstructorCode(e.target.value)}/>
+            <label htmlFor="instructorCode">Instructor Code</label>
+            <button onClick={login}>Join class</button>
+        </div>
     </>
     )
 }
