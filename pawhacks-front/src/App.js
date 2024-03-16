@@ -7,6 +7,7 @@ import { ToastContainer } from 'react-toastify';
 import Loading from './components/loading';
 import StudentLogin from './components/student/student_login';
 import InstructorLogin from './components/instructor/instructor_login';
+import CreateQuestion from './components/instructor/create_question';
 
 import UserContext from './context/user.context';
 import WebSocketContext from './context/websocket.context';
@@ -73,6 +74,8 @@ export default function App() {
             <Routes>
               <Route exact path="/student/login" Component={StudentLogin} />
               <Route exact path="/instructor/login" Component={InstructorLogin} />
+
+              <Route exact path="/instructor/create" Component={CreateQuestion} />
             </Routes>
           </WebSocketContext.Provider>
         </UserContext.Provider>

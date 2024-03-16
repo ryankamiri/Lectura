@@ -41,11 +41,13 @@ export default function InstructorLogin() {
 
     return (
     <>
-        <input id="user" type="text"onChange={e => setUser(e.target.value)}/>
-        <label htmlFor="user">Email</label>
-        <input id="instructorCode" type="text" onChange={e => setInstructorCode(e.target.value)}/>
-        <label htmlFor="instructorCode">Instructor Code</label>
-        <button onClick={login}>Log in</button>
+        <div className="container">
+            <input id="user" type="text" onChange={e => setUser(e.target.value)}/>
+            <label htmlFor="user">Email</label>
+            <input id="instructorCode" type="text" onChange={e => setInstructorCode(e.target.value)}/>
+            <label htmlFor="instructorCode">Instructor Code</label>
+            <button onClick={login}>Log in</button>
+        </div>
     </>
     )
 }
