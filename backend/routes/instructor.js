@@ -5,7 +5,7 @@ const AskedQuestion = require('../models/askedQuestion.model');
 const Points = require('../models/points.model');
 const WebSocket = require('../websocket');
 
-router.get('/question', async (req, res) => {
+router.post('/question', async (req, res) => {
     try{
         const {instructorCode} = req.body;
         
@@ -21,7 +21,7 @@ router.get('/question', async (req, res) => {
     }
 });
 
-router.get('/question/asked', async (req, res) => {
+router.post('/question/asked', async (req, res) => {
     try{
         const {instructorCode} = req.body;
         
@@ -37,7 +37,7 @@ router.get('/question/asked', async (req, res) => {
     }
 });
 
-router.get('/points', async (req, res) => {
+router.post('/points', async (req, res) => {
     try{
         const {instructorCode} = req.body;
         
