@@ -14,6 +14,7 @@ export default function Instructor() {
       });
     const [askedQuestions, setAskedQuestions] = useState();
     const [askedQuestionsData, setAskedQuestionsData] = useState([]);
+    const [showCorrectAnswer, setShowCorrectAnswer] = useState(false);
 
     const [ready, setReady] = useState(false);
 
@@ -106,6 +107,37 @@ export default function Instructor() {
         setAskedQuestionsData(list);
     };
 
+    const changeQuestion = async(index) => {
+        try{
+            if (index >= 0 && index < questions.length){
+                const answerCount = await createZeroList(questions[index].answers.length);
+                setCurrentQuestionData({
+                    questionIndex: index,
+                    answerCount,
+                });
+
+                const questionData = {
+                    question: questions[index].question,
+                    instructorCode: userData.instructorCode,
+                };
+                await Axios.post(process.env.REACT_APP_DOMAIN + '/api/instructor/question/display', questionData);
+            }
+        }
+        catch (err) {
+            if(err.response.data.msg){
+                toast.error(err.response.data.msg, {
+                    position: "top-right",
+                    autoClose: 5000,
+                    hideProgressBar: true,
+                    closeOnClick: false,
+                    pauseOnHover: true,
+                    draggable: true,
+                    progress: undefined,
+                });
+            }
+        }
+    }
+
     useEffect(() => {
         if(!userData.user) {
             return navigate('/instructor/login');
@@ -160,19 +192,31 @@ export default function Instructor() {
                 <div className="row">
                     <div className="container">
                         <h1>Asked Questions</h1>
-                            {askedQuestions.map((askedQuestion, i) => {
-                                return (
-                                    <div key={"Asked Question " + i}>
-                                        <h3 id={"Asked Question " + i}>{askedQuestion.question}</h3>
-                                        <input id={"Points " + i} type="number" value={askedQuestionsData[i] || 0} onChange={e => handlePointInput(e.target.value, i)}/>
-                                        <label htmlFor={"Points " + i}>Points</label>
-                                        <button onClick={() => clearAskedQuestion(i)}>Clear</button>
-                                    </div>
-                                );
-                            })}
+                        {askedQuestions.map((askedQuestion, i) => {
+                            return (
+                                <div key={"Asked Question " + i}>
+                                    <h3 id={"Asked Question " + i}>{askedQuestion.question}</h3>
+                                    <input id={"Points " + i} type="number" value={askedQuestionsData[i] || 0} onChange={e => handlePointInput(e.target.value, i)}/>
+                                    <label htmlFor={"Points " + i}>Points</label>  
+                                    <button onClick={() => clearAskedQuestion(i)}>Clear</button>
+                                </div>
+                            );
+                        })}
                     </div>
                     <div className="container">
                         <h1>Current Question Displayed</h1>
+                        <button onClick={() => changeQuestion(currentQuestionData.questionIndex - 1)}>Back</button>
+                        <button onClick={() => changeQuestion(currentQuestionData.questionIndex + 1)}>Next</button>
+                        <h3>{questions[currentQuestionData.questionIndex].question}</h3>
+                        {questions[currentQuestionData.questionIndex].answers.map((answer, i) => {
+                                return (
+                                    <div key={"Answer Choice " + i}>
+                                        <h3 id={"Answer Choice " + i} style={{color: (showCorrectAnswer && i === questions[currentQuestionData.questionIndex].correctIndex ? "green" : "black")}}>{answer}</h3>
+                                        <h4>Answers: {currentQuestionData.answerCount[i]}</h4>
+                                    </div>
+                                );
+                        })}
+                        <button onClick={() => setShowCorrectAnswer(!showCorrectAnswer)}>{showCorrectAnswer ? "Hide Correct Answer" : "Show Correct Answer"}</button>
                     </div>
                 </div>
             ) : (
