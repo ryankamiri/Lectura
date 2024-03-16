@@ -76,12 +76,12 @@ export default function CreateQuestion() {
     return (
         <>
             <div className="container">
-                <input id="question" type="text" onChange={e => setQuestion(e.target.value)}/>
+                <input id="question" type="text" value={question || ''} onChange={e => setQuestion(e.target.value)}/>
                 <label htmlFor="question">Question</label>
                 {answers.map((answer, i) => {
                     return (
                         <div key={"Answer Text " + i}>
-                            <input id={"Answer Text " + i} type="text" onChange={e => editAnswer(e.target.value, i)}/>
+                            <input id={"Answer Text " + i} type="text" value={answer|| ''} onChange={e => editAnswer(e.target.value, i)}/>
                             <label htmlFor={"Answer Text " + i} onClick={() => setCorrectIndex(i)} style={{color: (i ===  correctIndex ? "green" : "black")}} >Answer</label>
                         </div>
                     );

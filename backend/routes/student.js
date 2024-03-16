@@ -102,7 +102,7 @@ router.post('/question/answer', async (req, res) => {
 
         WebSocket.broadcast({
             messageType: "answered_student_question",
-            content: {answered: true}
+            content: {answerIndex}
         });
 
         return res.json({status: true});
