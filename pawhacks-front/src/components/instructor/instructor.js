@@ -14,6 +14,7 @@ export default function Instructor() {
     const [currentQuestionData, setCurrentQuestionData] = useState({
         questionIndex: 0,
         answerCount: [],
+        totalAnswers: 0
       });
     const [askedQuestions, setAskedQuestions] = useState();
     const [askedQuestionsData, setAskedQuestionsData] = useState([]);
@@ -45,6 +46,7 @@ export default function Instructor() {
                 setCurrentQuestionData({
                     questionIndex: currentQuestionData.questionIndex,
                     answerCount,
+                    totalAnswers: currentQuestionData.totalAnswers + 1
                 });
             }
             break;
@@ -124,6 +126,7 @@ export default function Instructor() {
                 setCurrentQuestionData({
                     questionIndex: index,
                     answerCount,
+                    totalAnswers: 0
                 });
                 setShowCorrectAnswer(false);
 
@@ -167,6 +170,7 @@ export default function Instructor() {
                 setCurrentQuestionData({
                     questionIndex: 0,
                     answerCount,
+                    totalAnswers: 0
                 });
 
                 const questionData = {
@@ -311,9 +315,25 @@ export default function Instructor() {
                                                     role="button"
                                                     data-bs-toggle="button"
                                                     aria-pressed="false"
-                                                    >{answer}</label>
+                                                    >
+                                                        <p className="mb-1">
+                                                        {answer}
+                                                        </p>
+                                                        {showCorrectAnswer ? (
+                                                        <>
+                                                            <p className="m-0 text-end">{currentQuestionData.answerCount[i]} students</p>
+                                                            <div className="progress" role="progressbar" aria-label="Basic example" aria-valuenow={currentQuestionData.answerCount[i]} aria-valuemin="0" aria-valuemax={currentQuestionData.totalAnswers}>
+                                                                <div className="progress-bar" style={{width: (currentQuestionData.answerCount[i] / currentQuestionData.totalAnswers) * 100 + "%"}}></div>
+                                                            </div>
+                                                        </>) : (
+                                                            <></>
+                                                        )}
+                                                </label>
                                             );
                                     })}
+                                    
+                                </div>
+                                <div className="card-footer text-center">
                                     <label
                                         className="btn btn-outline-light w-25 text-center my-2 py-4"
                                         role="button"
@@ -321,8 +341,6 @@ export default function Instructor() {
                                         aria-pressed="false"
                                         onClick={() => setShowCorrectAnswer(!showCorrectAnswer)}
                                         >{showCorrectAnswer ? "Hide Answer" : "Display Answer"}</label>
-                                    <div className="row">
-                                    </div>
                                 </div>
                             </div>
                         </div>
