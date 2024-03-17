@@ -5,6 +5,7 @@ import WebSocketContext from '../../context/websocket.context';
 import Loading from '../loading';
 import Axios from 'axios';
 import { toast } from 'react-toastify';
+import InstructorNavbar from './instructor_navbar';
 
 export default function Instructor() {
     const [questions, setQuestions] = useState();
@@ -194,6 +195,7 @@ export default function Instructor() {
 
     return (
         <>
+            <InstructorNavbar />
             {ready ? (
                 <div className="row">
                     <div className="container">

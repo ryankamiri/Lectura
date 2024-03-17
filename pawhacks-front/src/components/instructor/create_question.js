@@ -3,6 +3,7 @@ import {useNavigate} from 'react-router-dom';
 import UserContext from '../../context/user.context';
 import Axios from 'axios';
 import { toast } from 'react-toastify';
+import InstructorNavbar from './instructor_navbar';
 
 export default function CreateQuestion() {
     const [question, setQuestion] = useState();
@@ -75,6 +76,7 @@ export default function CreateQuestion() {
 
     return (
         <>
+            <InstructorNavbar/>
             <div className="container">
                 <input id="question" type="text" value={question || ''} onChange={e => setQuestion(e.target.value)}/>
                 <label htmlFor="question">Question</label>

@@ -5,7 +5,7 @@ import WebSocketContext from '../../context/websocket.context';
 import Loading from '../loading';
 import Axios from 'axios';
 import { toast } from 'react-toastify';
-import StudentNavbar from '../site/student_navbar';
+import StudentNavbar from './student_navbar';
 
 export default function Student() {
     const [question, setQuestion] = useState({
