@@ -94,6 +94,8 @@ export default function CreateQuestion() {
     useEffect(() => {
         if(!userData.user) {
             return navigate('/instructor/login');
+        } else if (userData.user && !userData.instructor) {
+            return navigate('/student');
         }
     }, [navigate, userData]);
 

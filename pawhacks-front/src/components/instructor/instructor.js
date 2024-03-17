@@ -155,6 +155,8 @@ export default function Instructor() {
     useEffect(() => {
         if(!userData.user) {
             return navigate('/instructor/login');
+        } else if (userData.user && !userData.instructor) {
+            return navigate('/student');
         }
     }, [navigate, userData]);
     
@@ -212,38 +214,6 @@ export default function Instructor() {
             <InstructorNavbar />
             {ready ? (
                 <>
-                {/* <div className="row">
-                    <div className="container">
-                        <h1>Asked Questions</h1>
-                        {askedQuestions.map((askedQuestion, i) => {
-                            return (
-                                <div key={"Asked Question " + i}>
-                                    <h3 id={"Asked Question " + i}>{askedQuestion.question}</h3>
-                                    <input id={"Points " + i} type="number" value={askedQuestionsData[i] || 0} onChange={e => handlePointInput(e.target.value, i)}/>
-                                    <label htmlFor={"Points " + i}>Points</label>  
-                                    <button onClick={() => clearAskedQuestion(i)}>Clear</button>
-                                </div>
-                            );
-                        })}
-                    </div>
-                    <div className="container">
-                        <h1>Current Question Displayed</h1>
-                        <button onClick={() => changeQuestion(currentQuestionData.questionIndex - 1)}>Back</button>
-                        <button onClick={() => changeQuestion(currentQuestionData.questionIndex + 1)}>Next</button>
-                        <h3>{questions[currentQuestionData.questionIndex].question}</h3>
-                        {questions[currentQuestionData.questionIndex].answers.map((answer, i) => {
-                                return (
-                                    <div key={"Answer Choice " + i}>
-                                        <h3 id={"Answer Choice " + i} style={{color: (showCorrectAnswer && i === questions[currentQuestionData.questionIndex].correctIndex ? "green" : "black")}}>{answer}</h3>
-                                        <h4>Answers: {currentQuestionData.answerCount[i]}</h4>
-                                    </div>
-                                );
-                        })}
-                        <button onClick={() => setShowCorrectAnswer(!showCorrectAnswer)}>{showCorrectAnswer ? "Hide Correct Answer" : "Show Correct Answer"}</button>
-                    </div>
-                </div> */}
-
-
                 <div className="container-fluid bg-black mt-5 pt-2">
                     <div className="row">
                         <div className="col-6 p-1 h-100">
