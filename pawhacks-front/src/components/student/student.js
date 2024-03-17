@@ -118,6 +118,9 @@ export default function Student() {
     useEffect(() => {
         const getData = async() => {
           try{
+            if(!userData.user){
+                return;
+            }
             const questionRes = await Axios.post(process.env.REACT_APP_DOMAIN + '/api/student/question', { instructorCode: userData.instructorCode});
             setQuestion({
                 question: questionRes.data.question,
