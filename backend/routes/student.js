@@ -39,7 +39,14 @@ router.post('/question', async (req, res) => {
         const {instructorCode} = req.body;
         // question, answers, correctIndex, instructorCode, active
         const question = await Question.findOne({instructorCode, active: true});
-        
+        if (!question){
+            return res.json({
+                status: true,
+                question: "",
+                answers: [],
+                instructorCode: instructorCode
+            });
+        }
         return res.json({
             status: true,
             question: question.question,
