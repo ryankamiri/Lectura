@@ -283,7 +283,7 @@ export default function Instructor() {
                         <div className="col-6 p-1 h-100">
                             <div className="card text-bg-dark" style={{height: "93vh", overflowY: "auto"}}>
                                 <h5 className="text-center card-header py-3">Poll</h5>
-                                <div className="card-body col text-center">
+                                <div className="card-body col text-center" style={{overflowY: "auto"}}>
                                     <div className="row align-items-center">
                                         <div className="col-2">
                                             <label className="nav-link text-light hover" onClick={() => changeQuestion(currentQuestionData.questionIndex - 1)}>
