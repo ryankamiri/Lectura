@@ -6,6 +6,8 @@ import Loading from '../loading';
 import Axios from 'axios';
 import { toast } from 'react-toastify';
 import InstructorNavbar from './instructor_navbar';
+import LeftArrow from '../../static/images/leftarrow.png'
+import RightArrow from '../../static/images/rightarrow.png'
 
 export default function Instructor() {
     const [questions, setQuestions] = useState();
@@ -58,6 +60,13 @@ export default function Instructor() {
             list.push(0);
         }
         return list;
+    };
+
+    const handleKeyDown = async(event, index) => {
+        if (event.key === 'Enter') {
+            event.preventDefault();
+            await clearAskedQuestion(index);
+        }
     };
 
     const clearAskedQuestion = async(index) => {
@@ -116,6 +125,7 @@ export default function Instructor() {
                     questionIndex: index,
                     answerCount,
                 });
+                setShowCorrectAnswer(false);
 
                 const questionData = {
                     question: questions[index].question,
@@ -197,7 +207,8 @@ export default function Instructor() {
         <>
             <InstructorNavbar />
             {ready ? (
-                <div className="row">
+                <>
+                {/* <div className="row">
                     <div className="container">
                         <h1>Asked Questions</h1>
                         {askedQuestions.map((askedQuestion, i) => {
@@ -226,7 +237,98 @@ export default function Instructor() {
                         })}
                         <button onClick={() => setShowCorrectAnswer(!showCorrectAnswer)}>{showCorrectAnswer ? "Hide Correct Answer" : "Show Correct Answer"}</button>
                     </div>
+                </div> */}
+
+
+                <div className="container-fluid bg-black mt-5 pt-2">
+                    <div className="row">
+                        <div className="col-6 p-1 h-100">
+                            <div className="card text-bg-dark" style={{height: "93vh"}}>
+                                <h5 className="text-center card-header py-3">Questions</h5>
+                                <div className="card-body" style={{height: "60vh", overflowY: "auto"}}>
+                                {askedQuestions.map((askedQuestion, i) => {
+                                    return (
+                                        <div key={"Asked Question " + i} className="d-flex flex-row justify-content-start mb-4">
+                                            <div className="col-9">
+                                                <div
+                                                    className="p-3 ms-3 text-bg-light"
+                                                    style={{borderRadius: "15px", backgroundColor: "rgba(57, 192, 237, 0.2)"}}
+                                                >
+                                                    <p className="small mb-0">
+                                                    {askedQuestion.question}
+                                                    </p>
+                                                </div>
+                                            </div>
+                                            <div className="col-2">
+                                                <input
+                                                type="number"
+                                                className="btn btn-outline-light w-100 ms-4 p-3"
+                                                style={{borderRadius: "15px"}}
+                                                value={askedQuestionsData[i] || 0}
+                                                onChange={e => handlePointInput(e.target.value, i)}
+                                                onKeyDown={e => handleKeyDown(e, i)}
+                                                >
+                                                </input>
+                                            </div>
+                                        </div>
+                                    );
+                                })}
+                                </div>
+                            </div>
+                        </div>
+                        <div className="col-6 p-1 h-100">
+                            <div className="card text-bg-dark" style={{height: "93vh", overflowY: "auto"}}>
+                                <h5 className="text-center card-header py-3">Poll</h5>
+                                <div className="card-body col text-center">
+                                    <div className="row align-items-center">
+                                        <div className="col-2">
+                                            <label className="nav-link text-light hover" onClick={() => changeQuestion(currentQuestionData.questionIndex - 1)}>
+                                                <img
+                                                src={LeftArrow}
+                                                alt="Logo"
+                                                height="35"
+                                                />
+                                            </label>
+                                        </div>
+                                        <div className="col-8">
+                                            <h2 className="card-text py-2 text-center">{questions[currentQuestionData.questionIndex].question}</h2>
+                                        </div>
+                                        <div className="col-2">
+                                            <label className="nav-link text-light hover" onClick={() => changeQuestion(currentQuestionData.questionIndex + 1)}>
+                                                <img
+                                                src={RightArrow}
+                                                alt="Logo"
+                                                height="35"
+                                                />
+                                            </label>
+                                        </div>
+                                    </div>
+                                    {questions[currentQuestionData.questionIndex].answers.map((answer, i) => {
+                                            return (
+                                                <label
+                                                    key={"Answer Choice " + i}
+                                                    className={showCorrectAnswer && i === questions[currentQuestionData.questionIndex].correctIndex ? "btn btn-outline-success w-100 text-start my-2 py-4 active" : "btn btn-outline-light w-100 text-start my-2 py-4 disabled"}
+                                                    role="button"
+                                                    data-bs-toggle="button"
+                                                    aria-pressed="false"
+                                                    >{answer}</label>
+                                            );
+                                    })}
+                                    <label
+                                        className="btn btn-outline-light w-25 text-center my-2 py-4"
+                                        role="button"
+                                        data-bs-toggle="button"
+                                        aria-pressed="false"
+                                        onClick={() => setShowCorrectAnswer(!showCorrectAnswer)}
+                                        >{showCorrectAnswer ? "Hide Answer" : "Display Answer"}</label>
+                                    <div className="row">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
+                </>
             ) : (
                 <Loading />
             )}

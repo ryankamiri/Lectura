@@ -3,7 +3,7 @@ import {Link, useNavigate} from 'react-router-dom';
 import { toast } from 'react-toastify';
 import UserContext from '../../context/user.context';
 import Logo2 from '../../static/images/logo2.png';
-import ProfileIcon from '../../static/images/profileicon.png';
+import LogoutIcon from '../../static/images/logout.png';
 
 export default function StudentNavbar() {
 
@@ -50,7 +50,7 @@ export default function StudentNavbar() {
                 >
                     <label className="nav-link text-light hover" onClick={logout}>
                         <img
-                        src={ProfileIcon}
+                        src={LogoutIcon}
                         alt="Logo"
                         height="25"
                         />
