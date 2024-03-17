@@ -1,4 +1,5 @@
 # Lectura 
+![alt text](https://github.com/ryankamiri/PawHacks/blob/main/frontend/static/images/logo.png?raw=true)
 Transform your classroom experience with Lectura: seamless live Q&A, interactive polls, and a rewarding point system. Prepare to create a dynamic learning-environment to boost student engagement. 
 
 ## Inspiration:
@@ -10,7 +11,7 @@ Introducing Lectura: a desktop app designed to enhance classroom engagement thro
 The front-end of Lectura was developed using HTML and Bootstrap as our framework, with React handling the connection to the back-end. The back-end utilizes MongoDB for data storage, web sockets for real-time communication, and Express for server management. The application is hosted on Vercel. 
 
 ## Challenges we ran into: 
-PawHacks was the first hackathon for most of us, so we decided to try out new software that were unknown to us such as Figma. After skimming through a few videos, we began our design using it. However, after spending much time trying to understand the features and workflow, we ultimately thought it would be better to stick with what we know: HTML and Bootstrap. We also ran into some problems piecing together all the HMTL with React and making it all flow. Our final challenge came when we tried hosting our app on Vercel, which after configuring, we learned that they did not support web sockets. Instead we used Hiroku, which supports our needs.
+PawHacks was the first hackathon for most of us, so we decided to try out new software that were unknown to us such as Figma. After skimming through a few videos, we began our design using it. However, after spending much time trying to understand the features and workflow, we ultimately thought it would be better to stick with what we know: HTML and Bootstrap. We also ran into some problems piecing together all the HMTL with React and making it all flow. Our final challenge came when we tried hosting our app on Vercel, which after configuring, we learned that they did not support web sockets. Instead we used Digital Ocean, which supports our needs.
 
 ## Accomplishments that we’re proud of:
 We’re proud to address a real issue we faced in our time at Northeastern Oakland. We believe Lectura has the ability to enhance the learning experience in classrooms both within Mills College and beyond at other institutions.
@@ -28,4 +29,4 @@ Different formats for polls, such as selecting multiple choice and entering shor
 - Better user experience: a smoother way to manage multiple classes 
 
 ## Built with: 
-HTML/Bootstrap, Express.js, React, MongoDB, Web-sockets 
+HTML/Bootstrap, Express.js, React, MongoDB, Web-socketing
