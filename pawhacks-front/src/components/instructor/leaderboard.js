@@ -5,7 +5,7 @@ import Loading from '../loading';
 import Axios from 'axios';
 import { toast } from 'react-toastify';
 
-export default function Instructor() {
+export default function Leaderboard() {
     const [leaderboard, setLeaderboard] = useState();
 
     const [ready, setReady] = useState(false);

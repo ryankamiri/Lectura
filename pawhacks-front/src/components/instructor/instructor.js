@@ -157,6 +157,12 @@ export default function Instructor() {
                     questionIndex: 0,
                     answerCount,
                 });
+
+                const questionData = {
+                    question: q.question,
+                    instructorCode: userData.instructorCode,
+                };
+                await Axios.post(process.env.REACT_APP_DOMAIN + '/api/instructor/question/display', questionData);
             }
 
             const askedQuestionsRes = await Axios.post(process.env.REACT_APP_DOMAIN + '/api/instructor/question/asked', { instructorCode: userData.instructorCode});

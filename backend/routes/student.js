@@ -93,7 +93,14 @@ router.post('/question/answer', async (req, res) => {
             // Reward with points.
 
             // points, user, instructorCode
-            const points = await Points.findOne({user, instructorCode});
+            let points = await Points.findOne({user, instructorCode});
+            if (!points) {
+                points = new Points({
+                    points: 0,
+                    user,
+                    instructorCode,
+                });
+            }
             points.points += 50
     
             await points.save();

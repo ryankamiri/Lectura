@@ -6,6 +6,7 @@ import { ToastContainer } from 'react-toastify';
 
 import Loading from './components/loading';
 import StudentLogin from './components/student/student_login';
+import Student from './components/student/student';
 import InstructorLogin from './components/instructor/instructor_login';
 import CreateQuestion from './components/instructor/create_question';
 import Leaderboard from './components/instructor/leaderboard';
@@ -80,6 +81,8 @@ export default function App() {
               <Route exact path="/instructor/create" Component={CreateQuestion} />
               <Route exact path="/instructor/leaderboard" Component={Leaderboard} />
               <Route exact path="/instructor" Component={Instructor} />
+
+              <Route exact path="/student" Component={Student} />
             </Routes>
           </WebSocketContext.Provider>
         </UserContext.Provider>

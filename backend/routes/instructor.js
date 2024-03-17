@@ -120,14 +120,17 @@ router.post('/question/reward', async (req, res) => {
                     user: rewardQuestion.user,
                     instructorCode,
                 });
-        
-                await points.save();
             }
             points.points += reward
     
             await points.save();
         }
         await rewardQuestion.save();
+
+        WebSocket.broadcast({
+            messageType: "clear_instructor_question",
+            content: rewardQuestion
+        });
 
         return res.json({
             status: true
