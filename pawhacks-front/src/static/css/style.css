@@ -39,7 +39,7 @@ body {
     width: 0;
   }
   to {
-    width: 600px;
+    width: 590px;
   }
 }
 @keyframes blinkTextCursor {
