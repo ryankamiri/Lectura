@@ -27,27 +27,24 @@
         <div
           class="navbar-nav col-4 d-flex justify-content-end align-items-center"
         >
-        <a class="nav-link text-light hover" href="#">
+          <a class="nav-link text-light mx-2 hover" href="#">
             <img
               src="../static/images/homeicon.png"
               alt="Logo"
               height="25"
             />
-          <a class="nav-link text-light mx-2 hover" href="#">
+          <a class="nav-link text-light hover" href="#">
             <img
               src="../static/images/plusicon.png"
               alt="Logo"
               height="25"
             />
-          <a class="nav-link text-light hover" href="#">
+          <a class="nav-link text-light mx-2 hover" href="#">
             <img
               src="../static/images/leaderboardicon.png"
               alt="Logo"
               height="25"
             />
-          </a>
-          <a class="nav-link text-light mx-2 hover" href="#">
-            <img src="../static/images/lightmode.png" alt="Logo" height="25" />
           </a>
           <a class="nav-link text-light hover" href="#">
             <img
@@ -64,18 +61,27 @@
       <div class="row">
         <div class="p-1 h-100">
           <div class="card text-bg-dark" style="height: 93vh">
-            <h5 class="text-center card-header py-3">Questions</h5>
+            <h5 class="text-center card-header py-3">Create Question</h5>
             <div class="card-body" style="height: 60vh; overflow-y: auto">
-              <div class="d-flex flex-row justify-content-start mb-4">
-            <div class="mb-3 align-text-bottom card-footer">
-              <form>
-                <textarea
-                  class="form-control"
-                  rows="4"
-                  placeholder="Enter your question"
-                ></textarea>
-              </form>
+              <h2 class="pb-3">Enter your question:</h2>
+              <div class="justify-content-start mb-4">
+                <form>
+                  <textarea
+                    class="form-control"
+                    rows="4"
+                  ></textarea>
+                </form>
+              </div>
+              <h3 class="pb-3">Select correct answer:</h3>
+              <input type="radio" class="btn-check" name="options-base" id="option5" autocomplete="off" checked>
+              <label class="btn w-100 text-start text-light my-2 py-4" for="option5">Option 1</label>
+              <input type="radio" class="btn-check" name="options-base" id="option6" autocomplete="off" checked>
+              <label class="btn w-100 text-start text-light my-2 py-4" for="option6">Option 2</label>
+              <input type="radio" class="btn-check" name="options-base" id="option7" autocomplete="off" checked>
+              <label class="btn w-100 text-start text-light my-2 py-4" for="option7">Option 3</label>
             </div>
           </div>
         </div>
+      </div>
+    </div>
 </body>
