@@ -40,7 +40,7 @@ router.post('/points', async (req, res) => {
     try{
         const {instructorCode} = req.body;
         
-        const points = await Points.find({instructorCode});
+        const points = await Points.find({instructorCode}).sort({points: -1});
         
         return res.json({
             status: true,

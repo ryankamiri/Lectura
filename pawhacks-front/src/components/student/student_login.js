@@ -3,6 +3,8 @@ import {useNavigate} from 'react-router-dom';
 import UserContext from '../../context/user.context';
 import Axios from 'axios';
 import { toast } from 'react-toastify';
+import '../../static/css/login.css';
+import Logo2 from '../../static/images/logo2.png';
 
 export default function StudentLogin() {
     const [user, setUser] = useState();
@@ -63,11 +65,61 @@ export default function StudentLogin() {
     return (
     <>
         <div className="container">
-            <input id="user" type="text" onChange={e => setUser(e.target.value)}/>
-            <label htmlFor="user">Email</label>
-            <input id="instructorCode" type="text" onChange={e => setInstructorCode(e.target.value)}/>
-            <label htmlFor="instructorCode">Instructor Code</label>
-            <button onClick={login}>Join class</button>
+            <div className="row align-items-start">
+                <div className="col-3"></div>
+                <div className="col-6">
+                <div className="mt-5 mb-3 text-center">
+                    <img
+                    src={Logo2}
+                    alt="logo"
+                    height="75"
+                    id="logo"
+                    />
+                </div>
+                <div className="text-center text-light pb-3">
+                    Revolutionizing the classroom experience
+                </div>
+                <div className="justify-content-center" id="login-card">
+                    <div className="card bg-black" style={{borderRadius: "15px"}}>
+                    <div className="card-body m-3">
+                        <h5 className="card-title text-center p-3 text-light fw-bold fs-3">
+                        Join Lecture
+                        </h5>
+                        <div className="mb-3">
+                            <input
+                            type="email"
+                            className="form-control p-2"
+                            id="email"
+                            name="email"
+                            placeholder="Enter email"
+                            required
+                            onChange={e => setUser(e.target.value)}
+                            />
+                        </div>
+                        <div className="mb-3">
+                            <input
+                            type="text"
+                            className="form-control p-2"
+                            id="class_code"
+                            name="class_code"
+                            placeholder="Enter class code"
+                            required
+                            onChange={e => setInstructorCode(e.target.value)}
+                            />
+                        </div>
+                        <div className="text-center">
+                            <button onClick={login}
+                            className="btn btn-primary mt-2 mb-2 w-100"
+                            >
+                            Join
+                            </button>
+                        </div>
+                    </div>
+                    </div>
+                </div>
+                </div>
+                <div className="col-3"></div>
+            </div>
         </div>
     </>
     )

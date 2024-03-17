@@ -8,8 +8,8 @@ import { toast } from 'react-toastify';
 
 export default function Student() {
     const [question, setQuestion] = useState({
-        question: "",
-        answers: [""]
+        question: "NA",
+        answers: ["NA"]
     });
     const [askedQuestions, setAskedQuestions] = useState();
     const [questionText, setQuestionText] = useState();
@@ -148,32 +148,64 @@ export default function Student() {
     return (
         <>
             {ready ? (
-                <div className="row">
-                    <div className="container">
-                        <h1>Asked Questions</h1>
-                        {askedQuestions.map((askedQuestion, i) => {
-                            return (
-                                <div key={"Asked Question " + i}>
-                                    <h3 id={"Asked Question " + i} style={{color: (userData.user === askedQuestion.user ? "green" : "black")}}>{askedQuestion.question}</h3>
+                <div className="container-fluid bg-black mt-5 pt-2">
+                    <div className="row">
+                        <div className="col-6 p-1 h-100">
+                            <div className="card text-bg-dark" style={{height: "93vh"}}>
+                                <h5 className="text-center card-header py-3">Questions</h5>
+                                <div className="card-body" style={{height: "60vh", overflowY: "auto"}}>
+                                    {askedQuestions.map((askedQuestion, i) => {
+                                        return (
+                                            <div className={userData.user === askedQuestion.user ? "d-flex flex-row justify-content-end mb-4" : "d-flex flex-row justify-content-start mb-4"}>
+                                                <div
+                                                    className={userData.user === askedQuestion.user ? "p-3 me-3" : "p-3 ms-3 text-bg-light"}
+                                                    style={{
+                                                    borderRadius: "15px",
+                                                    backgroundColor: "rgba(57, 192, 237, 0.2)"
+                                                    }}
+                                                >
+                                                    <p className="small mb-0">
+                                                    {askedQuestion.question}
+                                                    </p>
+                                                </div>
+                                            </div>
+                                        );
+                                    })}
                                 </div>
-                            );
-                        })}
-                        <form>
-                            <input id="askQuestion" type="text" value={questionText || ""} onKeyDown={handleKeyDown} onChange={e => setQuestionText(e.target.value)}/>
-                        </form>
+                                <div className="mb-3 align-text-bottom card-footer">
+                                    <textarea
+                                        className="form-control"
+                                        rows="4"
+                                        placeholder="Enter your question"
+                                        value={questionText || ""}
+                                        onKeyDown={handleKeyDown}
+                                        onChange={e => setQuestionText(e.target.value)}
+                                    ></textarea>
+                                </div>
+                            </div>
+                        </div>
+                        <div className="col-6 p-1 h-100">
+                            <div className="card text-bg-dark" style={{height: "93vh", overflowY: "auto"}}>
+                                <h5 className="text-center card-header py-3">Poll</h5>
+                                <div className="card-body">
+                                    <h2 className="card-text py-2">{question.question}</h2>
+                                    {question.answers.map((answer, i) => {
+                                            return (
+                                                <p
+                                                key={"Answer Choice " + i}
+                                                className={answerIndex === -1 || answerIndex === i ? "btn btn-outline-light w-100 text-start my-2 py-4" : "btn btn-outline-light w-100 text-start my-2 py-4 disabled"}
+                                                role="button"
+                                                data-bs-toggle="button"
+                                                aria-pressed="false"
+                                                onClick={() => answerQuestion(i)}
+                                                >{answer}</p>
+                                            );
+                                    })}
+                                </div>
+                            </div>
+                        </div>
                     </div>
-                    <div className="container">
-                        <h1>Current Question</h1>
-                        <h2>{question.question}</h2>
-                        {question.answers.map((answer, i) => {
-                                return (
-                                    <div key={"Answer Choice " + i}>
-                                        <h3 id={"Answer Choice " + i} style={{color: (answerIndex === i ? "blue" : "black")}}onClick={() => answerQuestion(i)}>{answer}</h3>
-                                    </div>
-                                );
-                        })}
-                    </div>
-                </div>
+              </div>
             ) : (
                 <Loading />
             )}

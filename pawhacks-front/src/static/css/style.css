@@ -1,0 +1,14 @@
+body {
+  background-color: #101010;
+}
+
+.hover {
+  border: 1px solid transparent;
+  border-radius: 10px;
+}
+
+.hover:hover {
+  cursor: pointer;
+  border: 1px solid #ffffff;
+  opacity: 90%;
+}

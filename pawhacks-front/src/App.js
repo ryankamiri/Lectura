@@ -1,8 +1,9 @@
-import './App.css';
+import './static/css/style.css';
 
 import React, {useState, useEffect} from 'react';
 import { Route, Routes, BrowserRouter } from 'react-router-dom';
 import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 import Loading from './components/loading';
 import StudentLogin from './components/student/student_login';
@@ -16,6 +17,15 @@ import UserContext from './context/user.context';
 import WebSocketContext from './context/websocket.context';
 
 export default function App() {
+
+  const contextClass = {
+    success: "Toastify__toast--success",
+    error: "Toastify__toast--error",
+    info: "Toastify__toast--info",
+    warning: "Toastify__toast--warning",
+    default: "Toastify__toast--default",
+    dark: "Toastify__toast--dark",
+  };
 
   const [userData, setUserData] = useState({
     user: undefined,
@@ -64,7 +74,7 @@ export default function App() {
           <WebSocketContext.Provider value={{ws, setWS}}>
             <ToastContainer
               position="top-right"
-              //toastClassName={({ type }) => "Toastify__toast Toastify__toast-theme--colored " + contextClass[type || "default"]}
+              toastClassName={({ type }) => "Toastify__toast Toastify__toast-theme--colored " + contextClass[type || "default"]}
               autoClose={5000}
               hideProgressBar={false}
               newestOnTop={false}

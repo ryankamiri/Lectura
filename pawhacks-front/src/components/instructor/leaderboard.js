@@ -47,16 +47,31 @@ export default function Leaderboard() {
     return (
         <>
             {ready ? (
-                <div className="container">
-                    <h1>Leaderboard</h1>
+                <div
+                    className="container-fluid bg-black mt-5 pt-2"
+                    style={{height: "95vh", overflowY: "auto"}}
+                >
+                <table className="table table-bordered container mt-2 table-dark">
+                  <thead>
+                    <tr>
+                      <th className="colname" scope="col">#</th>
+                      <th className="colname" scope="col">Username</th>
+                      <th className="colname" scope="col">Points</th>
+                    </tr>
+                  </thead>
+                  <tbody>
                     {leaderboard.map((leaderboardData, i) => {
                         return (
-                            <div key={"Leaderboard " + i}>
-                                <h3 id={"Leaderboard " + i}>{leaderboardData.user} | {leaderboardData.points}</h3>
-                            </div>
+                            <tr key={"Leaderboard " + i}>
+                                <td>{i+1}</td>
+                                <td>{leaderboardData.user}</td>
+                                <td>{leaderboardData.points}</td>
+                            </tr>
                         );
                     })}
-                </div>
+                  </tbody>
+                </table>
+              </div>
             ) : (
                 <Loading />
             )}
