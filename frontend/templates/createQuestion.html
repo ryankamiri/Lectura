@@ -59,7 +59,7 @@
 
     <div class="container-fluid bg-black mt-5 pt-2">
       <div class="row">
-        <div class="p-1 h-100">
+        <div class="p-1 h-100 text-center">
           <div class="card text-bg-dark" style="height: 93vh">
             <h5 class="text-center card-header py-3">Create Question</h5>
             <div class="card-body" style="height: 60vh; overflow-y: auto">
@@ -72,13 +72,31 @@
                   ></textarea>
                 </form>
               </div>
-              <h3 class="pb-3">Select correct answer:</h3>
-              <input type="radio" class="btn-check" name="options-base" id="option5" autocomplete="off" checked>
-              <label class="btn w-100 text-start text-light my-2 py-4" for="option5">Option 1</label>
-              <input type="radio" class="btn-check" name="options-base" id="option6" autocomplete="off" checked>
-              <label class="btn w-100 text-start text-light my-2 py-4" for="option6">Option 2</label>
-              <input type="radio" class="btn-check" name="options-base" id="option7" autocomplete="off" checked>
-              <label class="btn w-100 text-start text-light my-2 py-4" for="option7">Option 3</label>
+                <h3 class="pb-3">Select correct answer:</h3>
+                <input type="radio" class="btn-check" name="options-base" id="option5" autocomplete="off">
+                <label class="btn btn-outline-success w-100 text-start text-light my-2 py-4" for="option5">Option 1</label>
+                <input type="radio" class="btn btn-check btn-outline-light" name="options-base" id="option6" autocomplete="off">
+                <label class="btn btn-outline-success w-100 text-start text-light my-2 py-4" for="option6">Option 2</label>
+                <input type="radio" class="btn btn-check btn-outline-light" name="options-base" id="option7" autocomplete="off">
+                <label class="btn btn-outline-success w-100 text-start text-light my-2 py-4" for="option7">Option 3</label>
+                <input type="text" class="form-control my-2 py-4" placeholder="Enter new option">
+                <div class="row d-flex justify-content-center">
+                    <a
+                        class="btn btn-outline-success w-20 my-2 py-4 mx-3 col-2"
+                        role="button"
+                        >Add Option</a
+                    >
+                    <a
+                        class="btn btn-outline-danger w-20 my-2 py-4 mx-3 col-2"
+                        role="button"
+                        >Delete Last Option</a
+                    >
+                </div>
+                <a
+                    class="btn btn-outline-light w-20 my-2 py-4"
+                    role="button"
+                    >Create Question</a
+                >
             </div>
           </div>
         </div>
