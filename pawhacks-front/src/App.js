@@ -8,6 +8,7 @@ import Loading from './components/loading';
 import StudentLogin from './components/student/student_login';
 import InstructorLogin from './components/instructor/instructor_login';
 import CreateQuestion from './components/instructor/create_question';
+import Leaderboard from './components/instructor/leaderboard';
 import Instructor from './components/instructor/instructor';
 
 import UserContext from './context/user.context';
@@ -77,6 +78,7 @@ export default function App() {
               <Route exact path="/instructor/login" Component={InstructorLogin} />
 
               <Route exact path="/instructor/create" Component={CreateQuestion} />
+              <Route exact path="/instructor/leaderboard" Component={Leaderboard} />
               <Route exact path="/instructor" Component={Instructor} />
             </Routes>
           </WebSocketContext.Provider>

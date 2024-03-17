@@ -1,5 +1,4 @@
 const router = require('express').Router();
-const { stringify } = require('csv-stringify');
 const Question = require('../models/question.model');
 const AskedQuestion = require('../models/askedQuestion.model');
 const Points = require('../models/points.model');
@@ -43,15 +42,10 @@ router.post('/points', async (req, res) => {
         
         const points = await Points.find({instructorCode});
         
-        stringify(points, { header: true }, (err, output) => {
-            if (err) {
-              return res.status(500).send({status: false, msg: err.message});
-            }
-        
-            res.header('Content-Type', 'text/csv');
-            res.attachment('points.csv');
-            res.send(output);
-          });
+        return res.json({
+            status: true,
+            points
+        })
     }
     catch(err){
         return res.status(500).json({status: false, msg: err.message});
