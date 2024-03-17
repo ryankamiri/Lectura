@@ -126,7 +126,7 @@ export default function CreateQuestion() {
                                 {answers.map((answer, i) => {
                                     return (
                                         <>
-                                        <input key={"Answer Text " + i} type="radio" onClick={() => setCorrectIndex(i)} className="btn btn-check btn-outline-light" name="options-base" id={"Answer Text " + i} autocomplete="off" />
+                                        <input key={"Answer Text " + i} type="radio" onClick={() => setCorrectIndex(i)} className="btn btn-check btn-outline-light" name="options-base" id={"Answer Text " + i} autoComplete="off" />
                                         <label className="btn btn-outline-success w-100 text-start text-light my-2 py-4" for={"Answer Text " + i}>{answer}</label>
                                         </>
                                     );
