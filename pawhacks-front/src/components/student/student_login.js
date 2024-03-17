@@ -76,9 +76,6 @@ export default function StudentLogin() {
                     id="logo"
                     />
                 </div>
-                <div className="text-center text-light pb-3">
-                    Revolutionizing the classroom experience
-                </div>
                 <div className="justify-content-center text-center" id="login-card">
                     <div className="card bg-black" style={{borderRadius: "15px"}}>
                     <div className="card-body m-3">
