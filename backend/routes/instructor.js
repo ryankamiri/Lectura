@@ -126,7 +126,7 @@ router.post('/question/reward', async (req, res) => {
         }
 
         // Delete question
-        await rewardQuestion.remove().exec();
+        await AskedQuestion.findByIdAndDelete(rewardQuestion._id);
 
         WebSocket.broadcast({
             messageType: "clear_instructor_question",
