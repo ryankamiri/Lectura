@@ -110,7 +110,6 @@ router.post('/question/reward', async (req, res) => {
         if(!rewardQuestion) {
             return res.status(400).json({status: false, msg: "Coulnd't find question."})
         }
-        rewardQuestion.active = false;
         if (reward > 0) {
             // points, user, instructorCode
             let points = await Points.findOne({user: rewardQuestion.user, instructorCode});
@@ -125,7 +124,9 @@ router.post('/question/reward', async (req, res) => {
     
             await points.save();
         }
-        await rewardQuestion.save();
+
+        // Delete question
+        await rewardQuestion.remove().exec();
 
         WebSocket.broadcast({
             messageType: "clear_instructor_question",
