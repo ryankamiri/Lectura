@@ -2,4 +2,3 @@ backend/node_modules
 pawhacks-front/node_modules
 node_modules
 *env
-backend/vercel.json
