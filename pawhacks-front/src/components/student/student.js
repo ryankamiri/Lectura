@@ -193,7 +193,7 @@ export default function Student() {
                                             return (
                                                 <p
                                                 key={"Answer Choice " + i}
-                                                className={answerIndex === -1 || answerIndex === i ? "btn btn-outline-light w-100 text-start my-2 py-4" : "btn btn-outline-light w-100 text-start my-2 py-4 disabled"}
+                                                className={(answerIndex === -1) ? "btn btn-outline-light w-100 text-start my-2 py-4" : (answerIndex === i) ? "btn btn-outline-light w-100 text-start my-2 py-4 active" : "btn btn-outline-light w-100 text-start my-2 py-4 disabled"}
                                                 role="button"
                                                 data-bs-toggle="button"
                                                 aria-pressed="false"
