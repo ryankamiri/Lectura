@@ -5,6 +5,7 @@ import { Route, Routes, BrowserRouter } from 'react-router-dom';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
+import Landing from './components/landing';
 import Loading from './components/loading';
 import StudentLogin from './components/student/student_login';
 import Student from './components/student/student';
@@ -85,6 +86,7 @@ export default function App() {
               pauseOnHover
             />
             <Routes>
+              <Route exact path="/" Component={Landing} />
               <Route exact path="/student/login" Component={StudentLogin} />
               <Route exact path="/instructor/login" Component={InstructorLogin} />
 
