@@ -1,5 +1,6 @@
 # Lectura 
-![alt text](https://github.com/ryankamiri/PawHacks/blob/main/frontend/static/images/logo.png?raw=true)
+![alt text](https://github.com/ryankamiri/PawHacks/blob/main/frontend/static/images/logo.png?raw=true)  
+
 Transform your classroom experience with Lectura: seamless live Q&A, interactive polls, and a rewarding point system. Prepare to create a dynamic learning-environment to boost student engagement. 
 
 ## Inspiration:
