@@ -265,7 +265,7 @@ export default function Instructor() {
                                             </label>
                                         </div>
                                         <div className="col-8">
-                                            <h2 className="card-text py-2 text-center">{questions[currentQuestionData.questionIndex].question}</h2>
+                                            <h2 className="card-text py-2 text-center">{questions[currentQuestionData.questionIndex] ? questions[currentQuestionData.questionIndex].question : ""}</h2>
                                         </div>
                                         <div className="col-2">
                                             <label className="nav-link text-light hover" onClick={() => changeQuestion(currentQuestionData.questionIndex + 1)}>
@@ -277,7 +277,7 @@ export default function Instructor() {
                                             </label>
                                         </div>
                                     </div>
-                                    {questions[currentQuestionData.questionIndex].answers.map((answer, i) => {
+                                    {questions[currentQuestionData.questionIndex] ? questions[currentQuestionData.questionIndex].answers.map((answer, i) => {
                                             return (
                                                 <label
                                                     key={"Answer Choice " + i}
@@ -300,7 +300,7 @@ export default function Instructor() {
                                                         )}
                                                 </label>
                                             );
-                                    })}
+                                    }) : ""}
                                     
                                 </div>
                                 <div className="card-footer text-center">
