@@ -58,11 +58,11 @@ export default function InstructorLogin() {
                 <div className="text-center text-light pb-3">
                     Revolutionizing the classroom experience
                 </div>
-                <div className="justify-content-center" id="login-card">
+                <div className="justify-content-center text-center" id="login-card">
                     <div className="card bg-black" style={{borderRadius: "15px"}}>
                     <div className="card-body m-3">
                         <h5 className="card-title text-center p-3 text-light fw-bold fs-3">
-                        Instructor Login
+                        Login to Lecture
                         </h5>
                         <div className="mb-3">
                             <input
@@ -90,8 +90,11 @@ export default function InstructorLogin() {
                             <button onClick={login}
                             className="btn btn-primary mt-2 mb-2 w-100"
                             >
-                            Login to class
+                            Login
                             </button>
+                        </div>
+                        <div className="mt-2">
+                            <button className="btn btn-transparent text-light" onClick={() => navigate("/student/login")}> Student? </button>
                         </div>
                     </div>
                     </div>

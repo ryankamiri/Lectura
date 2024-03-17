@@ -79,7 +79,7 @@ export default function StudentLogin() {
                 <div className="text-center text-light pb-3">
                     Revolutionizing the classroom experience
                 </div>
-                <div className="justify-content-center" id="login-card">
+                <div className="justify-content-center text-center" id="login-card">
                     <div className="card bg-black" style={{borderRadius: "15px"}}>
                     <div className="card-body m-3">
                         <h5 className="card-title text-center p-3 text-light fw-bold fs-3">
@@ -113,6 +113,9 @@ export default function StudentLogin() {
                             >
                             Join
                             </button>
+                        </div>
+                        <div className="mt-2">
+                            <button className="btn btn-transparent text-light" onClick={() => navigate("/instructor/login")}> Instructor? </button>
                         </div>
                     </div>
                     </div>

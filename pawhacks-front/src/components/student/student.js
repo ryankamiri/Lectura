@@ -5,6 +5,7 @@ import WebSocketContext from '../../context/websocket.context';
 import Loading from '../loading';
 import Axios from 'axios';
 import { toast } from 'react-toastify';
+import StudentNavbar from '../site/student_navbar';
 
 export default function Student() {
     const [question, setQuestion] = useState({
@@ -147,6 +148,7 @@ export default function Student() {
 
     return (
         <>
+            <StudentNavbar />
             {ready ? (
                 <div className="container-fluid bg-black mt-5 pt-2">
                     <div className="row">
